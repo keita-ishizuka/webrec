@@ -1,0 +1,49 @@
+.navbar.navbar-light.fixed-top.navbar-expand-lg
+  .container
+    a.navbar-brand(href='/')
+      i.fas.fa-microphone-alt
+      | Webrec
+    button.navbar-toggler(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+      span.sr-only Toggle navigation
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li.nav-item(class=(title === __('home')) ? 'active' : undefined)
+          a.nav-link(href='/') #{__('home')}
+        li.nav-item(class=(title === __('documentation')) ? 'active' : undefined)
+          a.nav-link(href='/documentation') #{__('documentation')}
+        //li.nav-item(class=(title === 'Contact') ? 'active' : undefined)
+        //  a.nav-link(href='/contact') Contact
+        //li.nav-item(class=(title === 'Status') ? 'active' : undefined)
+        //  a.nav-link(href='/status') Status
+      ul.nav.navbar-nav.ml-auto
+        if !user
+          li.nav-item(class=(title === __('login')) ? 'active' : undefined)
+            a.nav-link(href='/login') #{__('login')}
+          li.nav-item(class=(title === __('create_account')) ? 'active' : undefined)
+            a.nav-link(href='/signup') #{__('create_account')}
+        else
+          li.dropdown(class=(title === __('account_management')) ? 'active' : undefined).nav-item
+            a.dropdown-toggle.nav-link(href='#', data-toggle='dropdown')
+              if user.profile.picture
+                img(src=user.profile.picture)
+              else
+                img(src=user.gravatar(60))
+              span= user.profile.name || user.email || user.id
+              i.caret
+            ul.dropdown-menu
+              li.dropdown-item
+                a(href='/account') #{__('my_account')}
+              li.divider.dropdown-item
+              li.dropdown-item
+                a(href='/logout') #{__('logout')}
+        li.dropdown(class=undefined).nav-item
+          a.dropdown-toggle.nav-link(href='#', data-toggle='dropdown')
+            i.fas.fa-globe-americas
+            | Language
+          ul.dropdown-menu
+            li.dropdown-item
+              a(href='/lang/ja') 日本語
+            li.divider.dropdown-item
+            li.dropdown-item
+              a(href='/lang/en') English

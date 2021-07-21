@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  .pb-2.mt-2.mb-4.border-bottom
+    h3 #{title}
+  table.table.table-bordered.table-striped
+    tr
+      th #{__('Name')}
+      th #{__('Created by')}
+      th #{__('Description')}
+      th #{__('Manuscript')}
+    each corpus in published_corpus
+      tr
+        td
+          a(href=`/webrec/corpus/view/${corpus._id}`) #{corpus.name}
+        td= corpus.createdBy.profile.name
+        td= corpus.description
+        td= corpus.num_of_manuscript

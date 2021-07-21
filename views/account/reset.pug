@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  .pb-2.mt-2.mb-4.border-bottom
+    h3 #{__('reset_password')}
+  form(method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group.row
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='password') #{__('new_password')}
+      .col-md-7
+        input.form-control(type='password', name='password', id='password', placeholder='New password', autofocus, autocomplete='new-password', required)
+    .form-group.row
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='confirm') #{__('confirm_password')}
+      .col-md-7
+        input.form-control(type='password', name='confirm', id='confirm', placeholder='Confirm password', autocomplete='new-password', required)
+    .form-group.offset-sm-3.col-md-7.pl-2
+      button.btn.btn-primary.btn-reset(type='submit')
+        i.far.fa-keyboard.fa-sm
+        | #{__('change_password')}

@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+  h1 #{corpusname}
+  p.lead #{__('Created by')}: #{createdBy.profile.name}
+  p.lead #{__('Description')}: #{description}
+  p.lead #{__('Number of manuscripts')}: #{manuscripts.length}
+  p.lead #{__('Number of speakers')}: #{recordedBy.length}
+  hr
+  h3 #{__('Progress')}
+  table.table.table-bordered.table-striped
+    tr
+      th #{__('Username')}
+      th #{__('Number of Record')}
+    each user in recordedBy
+      tr
+        td= user.profile.name
+        td= user.num_of_record
+  hr
+  h3 #{__('List of scripts')}
+  table.table.table-bordered.table-striped
+    tr
+      th #{__('Filename')}
+      th #{__('Content')}
+      th #{__('Recorded')}
+    each manuscript in manuscripts
+      tr
+        td= manuscript.audioname
+        td= manuscript.content
+        td= manuscript.num_of_recorded
+  hr
+
+  .d-flex.flex-row.justify-content-start.my-2
+    button.btn.btn-primary.mx-1(onclick="if(window.confirm(\'ダウンロードしますか？\')){ location.href=\'/webrec/corpus/download/" + corpusid + "\'; }", role='button') Download
+    button.btn.btn-danger.mx-1(onclick="if(window.confirm(\'コーパスを削除すると，録音された音声データも削除され復元できません．本当に削除しますか？\')){ location.href=\'/webrec/corpus/delete/" + corpusid + "\'; }", role='button') Delete

@@ -1,0 +1,92 @@
+extends ../layout
+
+block head
+  //- script(src='https://unpkg.com/wavesurfer.js@3.3.1/dist/wavesurfer.js')
+  //- script(src='https://unpkg.com/wavesurfer.js@3.3.1/dist/plugin/wavesurfer.microphone.js')
+  script(src='https://unpkg.com/wavesurfer.js')
+  script(src='https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.microphone.js')
+  script(src='https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js')
+
+block content
+  div#alertbox
+
+  .pb-2.mt-2.mb-4.border-bottom
+    h3 
+      a(href=`/webrec/audio/view/${corpusid}`) #{title}
+
+  nav(aria-label="breadcrumb")
+    ol.breadcrumb
+      li.breadcrumb-item
+        a(href=`/webrec/audio/view/${first_dir}`) #{first_dir}
+      li.breadcrumb-item
+        a(href=`/webrec/audio/view/${second_dir}`) #{second_dir}
+      li.breadcrumb-item
+        a(href=`/webrec/audio/view/${third_dir}`) #{third_dir}
+
+  .card
+    .card-header
+      | #{__('Manuscript')}
+    .card-body
+      h5.cardtitle!= content
+      p!= intonation
+      - var x =  Math.round(parseFloat(num_of_record) / parseFloat(num_of_manuscripts) * 100)
+      - var xnext =  x == 100 ? 100: Math.round(parseFloat(num_of_record+1) / parseFloat(num_of_manuscripts) * 100);
+      .row
+        .col-1
+          p#progress-ratio(data-num_of_record=num_of_record data-num_of_manuscripts=num_of_manuscripts) #{num_of_record} / #{num_of_manuscripts}
+        .col-11
+          div.progress(style="height: 20px;").my-1
+            div.progress-bar(role="progressbar" style="width: " + x + 
+            "%;" aria-valuenow=x aria-valuemin="0" aria-valuemax="100" data-xnext=xnext)
+
+  .d-flex.flex-row.justify-content-center.my-2
+    if prev != 'start'
+      button#backwardBtn.btn.btn-primary(data-dest=prev)
+        span.fas.fa-backward.fa-2x.end-manuscript
+    else
+      button#backwardBtn.btn.btn-secondary
+        span.fas.fa-backward.fa-2x.end-manuscript
+    button#recordBtn.btn.btn-primary
+      span.fas.fa-microphone-alt.fa-2x.end-manuscript
+    button#stopBtn.btn.btn-secondary
+      span.fas.fa-stop-circle.fa-2x.end-manuscript
+    if audiopath != ''
+      button#playBtn.btn.btn-primary
+        span.fas.fa-play-circle.fa-2x.end-manuscript
+    else
+      button#playBtn.btn.btn-secondary
+        span.fas.fa-play-circle.fa-2x.end-manuscript
+    if next == 'end'
+      button.btn.btn-secondary
+        span.fas.fa-forward.fa-2x.end-manuscript
+    else if audiopath == ''
+      button#forwardBtn.btn.btn-secondary(data-dest=next)
+        span.fas.fa-forward.fa-2x.end-manuscript
+    else
+      button#forwardBtn.btn.btn-primary(data-dest=next)
+        span.fas.fa-forward.fa-2x.end-manuscript
+
+  // div(id="audioURL")
+
+  .card
+    .card-header
+      | #{__("Waveform")}
+    .card-body
+      div(id='waveform')
+
+  form(id='postAudioRecord')
+    input(type='hidden' name='manuscriptid' value=manuscriptid)
+    //- audioControllerの中ではこれらの変数は用いられていないが、multerのdestinationおよびfilename関数に用いられている。
+    input(type='hidden' name='corpusid' value=corpusid)
+    input(type='hidden' name='first_dir' value=first_dir)
+    input(type='hidden' name='second_dir' value=second_dir)
+    input(type='hidden' name='third_dir' value=third_dir)
+    input(type='hidden' name='audioname' value=audioname)
+    input(id='audiopath' type='hidden' name='audiopath' value=audiopath)
+    input(id='audioIsValid' type='hidden' name='audioIsValid' value='true')
+    input(id='audioWasRecorded' type='hidden' name='audioWasRecorded' value='false')
+
+block foot
+  //- script(src='/webrec/js/my-bundle.js')
+  script(src='/webrec/js/validation.js')
+  script(src='/webrec/js/main.js')

@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+  .pb-2.mt-2.mb-4.border-bottom
+    h3 #{title}
+
+  form(method='POST', action="#")
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group.row
+      label.col-md-2.col-form-label.font-weight-bold.text-right #{__('Title of corpus')}
+      .col-md-8
+        input.form-control(type='text', name='corpusname')
+    .form-group.row
+      label.col-md-2.col-form-label.font-weight-bold.text-right #{__('Description')}
+      .col-md-8
+        textarea.form-control(name='description', rows='7')
+    .form-group.row
+      label.col-md-2.col-form-label.font-weight-bold.text-right #{__('Manuscript')}
+      .col-md-8
+        textarea.form-control(name='manuscript', rows='14', id='manuscript')
+    .form-group.row
+      label.col-md-2.col-form-label.font-weight-bold.text-right #{__('Read a csv file')}
+      .col-md-8
+        input(type='file', id='csvfile')
+        //- input.form-control(type='file', id='csvfile')
+    .form-group
+      .offset-sm-2.col-md-8.p-1
+        button.btn.btn-primary(type='submit')
+          i.fas.fa-fw.fa-pencil-alt.fa-sm
+          | #{__('Submit')}
+
+block foot
+  script(src='/webrec/js/corpusedit.js')

@@ -1,0 +1,155 @@
+extends layout
+
+//- main(role='main')
+block main
+  #myCarousel.carousel.slide(data-ride='carousel')
+    ol.carousel-indicators
+      li.active(data-target='#myCarousel' data-slide-to='0')
+      li(data-target='#myCarousel' data-slide-to='1')
+      li(data-target='#myCarousel' data-slide-to='2')
+    .carousel-inner
+      .carousel-item.active
+        img(src='banner.jpg').img-fluid
+        //- svg.bd-placeholder-img(width='100%' height='100%' xmlns='http://www.w3.org/2000/svg' preserveaspectratio='xMidYMid slice' focusable='false' role='img')
+        //-   rect(width='100%' height='100%' fill='#777')
+        .container
+          .carousel-caption
+            h1 ブラウザで収録できます
+            p
+              | アプリをダウンロードせずに，ブラウザで収録できます
+            p
+              a.btn.btn-lg.btn-primary(href='/webrec/signup' role='button') 録音を始める
+      .carousel-item
+        img(src='banner.jpg').img-fluid
+        //- svg.bd-placeholder-img(width='100%' height='100%' xmlns='http://www.w3.org/2000/svg' preserveaspectratio='xMidYMid slice' focusable='false' role='img')
+        //-   rect(width='100%' height='100%' fill='#777')
+        .container
+          .carousel-caption
+            h1 コーパスの管理も，全てブラウザでできます
+            p
+              | ブログを作成するように，簡単にコーパスの登録・編集ができます．
+            p
+              a.btn.btn-lg.btn-primary(href='/webrec/signup' role='button') コーパスを作成する
+      .carousel-item
+        img(src='banner.jpg').img-fluid
+        //- svg.bd-placeholder-img(width='100%' height='100%' xmlns='http://www.w3.org/2000/svg' preserveaspectratio='xMidYMid slice' focusable='false' role='img')
+        //-   rect(width='100%' height='100%' fill='#777')
+        .container
+          .carousel-caption
+            h1 スマートフォンからも録音できます
+            p
+              | スマートフォンから，録音ページにアクセスするだけ．アプリのインストール・設定は不要です．
+            p
+              a.btn.btn-lg.btn-primary(href='/webrec/signup' role='button') Webrecを始める
+    a.carousel-control-prev(href='#myCarousel' role='button' data-slide='prev')
+      span.carousel-control-prev-icon(aria-hidden='true')
+      span.sr-only Previous
+    a.carousel-control-next(href='#myCarousel' role='button' data-slide='next')
+      span.carousel-control-next-icon(aria-hidden='true')
+      span.sr-only Next
+  //
+    Marketing messaging and featurettes
+    ==================================================
+  // Wrap the rest of the page in another container to center all the content.
+  .container.marketing
+    // Three columns of text below the carousel
+    .row
+      .col-lg-4
+        //- img(src="/pic06.jpg" width='140' height='140').rounded-circle
+        //- svg.bd-placeholder-img.rounded-circle(width='140' height='140' xmlns='http://www.w3.org/2000/svg' preserveaspectratio='xMidYMid slice' focusable='false' role='img' aria-label='Placeholder: 140x140')
+        //-   title Placeholder
+        //-   rect(width='100%' height='100%' fill='#777')
+        //-   text(x='50%' y='50%' fill='#777' dy='.3em') 140x140
+        span.fa-stack.fa-lg.fa-5x
+          i.fa.fa-circle.fa-stack-2x
+          i.fa.fa-bolt.fa-stack-1x.fa-inverse
+        h2 インストール不要
+        p
+          | Webrecでコーパスの作成・音声の録音を行うには会員登録をするだけ．内蔵マイクを使うので，アプリのインストールや機器の購入は不要です．
+        //- p
+        //-   a.btn.btn-secondary(href='#' role='button') View details &raquo;
+      // /.col-lg-4
+      .col-lg-4
+        span.fa-stack.fa-lg.fa-5x
+          i.fa.fa-circle.fa-stack-2x
+          i.fa.fa-lightbulb.fa-stack-1x.fa-inverse
+        //- svg.bd-placeholder-img.rounded-circle(width='140' height='140' xmlns='http://www.w3.org/2000/svg' preserveaspectratio='xMidYMid slice' focusable='false' role='img' aria-label='Placeholder: 140x140')
+        //-   title Placeholder
+        //-   rect(width='100%' height='100%' fill='#777')
+        //-   text(x='50%' y='50%' fill='#777' dy='.3em') 140x140
+        h2 簡単な操作
+        p
+          | コーパスの作成は，CSVファイルをアップロードするだけ．録音は，ミュージックプレイヤーのようなボタンを操作するだけで，簡単にできます．
+        //- p
+        //-   a.btn.btn-secondary(href='#' role='button') View details &raquo;
+      // /.col-lg-4
+      .col-lg-4
+        span.fa-stack.fa-lg.fa-5x
+          i.fa.fa-circle.fa-stack-2x
+          i.fa.fa-mobile-alt.fa-stack-1x.fa-inverse
+        //- svg.bd-placeholder-img.rounded-circle(width='140' height='140' xmlns='http://www.w3.org/2000/svg' preserveaspectratio='xMidYMid slice' focusable='false' role='img' aria-label='Placeholder: 140x140')
+        //-   title Placeholder
+        //-   rect(width='100%' height='100%' fill='#777')
+        //-   text(x='50%' y='50%' fill='#777' dy='.3em') 140x140
+        h2 スマートフォンから録音可能
+        p
+          | 気軽に録音可能．コーパス作成者は，より多くの音声を集めることができます．
+        //- p
+        //-   a.btn.btn-secondary(href='#' role='button') View details &raquo;
+      // /.col-lg-4
+    // /.row
+    // START THE FEATURETTES
+    hr.featurette-divider
+    .row.featurette
+      .col-md-7
+        h2.featurette-heading
+          | わかりやすい録音画面
+          //- span.text-muted It&rsquo;ll blow your mind.
+        p.lead
+          | 録音したら，次へを押すだけ．ノイズや音量の過大過小は，自動で判定されます．
+      .col-md-5
+        img(src="/webrec/recording_demo_desktop.gif" width='500' height='500').img-fluid
+        //- svg.bd-placeholder-img.bd-placeholder-img-lg.featurette-image.img-fluid.mx-auto(width='500' height='500' xmlns='http://www.w3.org/2000/svg' preserveaspectratio='xMidYMid slice' focusable='false' role='img' aria-label='Placeholder: 500x500')
+        //-   title Placeholder
+        //-   rect(width='100%' height='100%' fill='#eee')
+        //-   text(x='50%' y='50%' fill='#aaa' dy='.3em') 500x500
+    hr.featurette-divider
+    .row.featurette
+      .col-md-7.order-md-2
+        h2.featurette-heading
+          | CSVでコーパス作成
+          //- span.text-muted See for yourself.
+        p.lead
+          | CSVで原稿を指定するだけで，自動でコーパス収録完了が作成されます．集めた音声のダウンロードもボタンを押すだけで可能．
+      .col-md-5.order-md-1
+        img(src="/webrec/corpus_edit.gif" width='500' height='500').img-fluid
+        //- svg.bd-placeholder-img.bd-placeholder-img-lg.featurette-image.img-fluid.mx-auto(width='500' height='500' xmlns='http://www.w3.org/2000/svg' preserveaspectratio='xMidYMid slice' focusable='false' role='img' aria-label='Placeholder: 500x500')
+        //-   title Placeholder
+        //-   rect(width='100%' height='100%' fill='#eee')
+        //-   text(x='50%' y='50%' fill='#aaa' dy='.3em') 500x500
+    hr.featurette-divider
+    .row.featurette
+      .col-md-7
+        h2.featurette-heading
+          | スマートフォンからも録音できる
+          //- span.text-muted Checkmate.
+        p.lead
+          | スマートフォンからアクセスするだけで，録音に参加できます．アプリのインストールは不要．
+      .col-md-5
+        img(src="/webrec/recording_demo_mobile.gif" width='500' height='500').img-fluid
+        //- svg.bd-placeholder-img.bd-placeholder-img-lg.featurette-image.img-fluid.mx-auto(width='500' height='500' xmlns='http://www.w3.org/2000/svg' preserveaspectratio='xMidYMid slice' focusable='false' role='img' aria-label='Placeholder: 500x500')
+        //-   title Placeholder
+        //-   rect(width='100%' height='100%' fill='#eee')
+        //-   text(x='50%' y='50%' fill='#aaa' dy='.3em') 500x500
+    hr.featurette-divider
+    // /END THE FEATURETTES
+  // /.container
+  // FOOTER
+  footer.container
+    p.float-right
+      a(href='#') Back to top
+    p
+      | &copy; 2017-2020 Company, Inc. &middot; 
+      a(href='#') Privacy
+      |  &middot; 
+      a(href='#') Terms

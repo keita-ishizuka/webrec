@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  .pb-2.mt-2.mb-4.border-bottom
+    h3 #{title}
+
+  table.table.table-bordered.table-striped
+    tr
+      //- th #{__('First Directory')}
+      //- th #{__('Second Directory')}
+      //- th #{__('Third Directory')}
+      th #{__('ID')}
+      th #{__('Content')}
+      th #{__('Is Recorded')}
+    - id = 0;
+    each val in manuscripts
+      - id += 1;
+      tr
+        //- td= val.first_dir
+        //- td= val.second_dir
+        //- td= val.third_dir
+        td= id
+        td
+          a(href=`/webrec/audio/record/${val._id}`) #{val.content}
+        if val.audio === null
+          td.table-danger= __('Not Yet')
+        else
+          td= __('Recorded')

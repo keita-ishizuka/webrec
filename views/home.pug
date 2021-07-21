@@ -1,0 +1,76 @@
+extends layout
+
+block content
+  h2 Webrec
+  p.lead #{__('You are logged in as {{username}}', { username: user.profile.name })}
+  hr
+  .card-deck
+    .card.text-center
+      .card-body
+        h5.card-title #{__('Create a corpus')}
+        h2
+          i.fa.fa-fw.fa-folder-plus.fa-3x.my-2
+        //- p.card-text adfdaa
+        a(href='/webrec/corpus/edit').btn.btn-primary.stretched-link #{__('Create')}
+    .card.text-center
+      .card-body
+        h5.card-title #{__('Edit a corpus')}
+        h2
+          //- i.fa.fa-file-alt.fa-3x
+          //- i.fa.fa-pencil-alt.fa-3x
+          i.fa.fa-fw.fa-edit.fa-3x.my-2.ml-3
+        //- p.card-text adfdaa
+        a(href='/webrec/corpus/list').btn.btn-primary.stretched-link #{__('Edit')}
+
+  .card-deck.my-4
+    .card.text-center
+      .card-body
+        h5.card-title #{__('New recording')}
+        h2
+          i.fa.fa-fw.fa-microphone-alt.fa-3x.my-2
+        //- p.card-text adfdaa
+        a(href='/webrec/audio/list').btn.btn-primary.stretched-link #{__('Record')}
+    .card.text-center
+      .card-body
+        h5.card-title #{__('Continue recording')}
+        h2
+          i.fa.fa-fw.fa-file-medical-alt.fa-3x.my-2.mr-3
+        //- p.card-text adfdaa
+        a(href='/webrec/corpus/list').btn.btn-primary.stretched-link #{__('Continue')}
+
+  h2 #{__('Recent Corpuses')}
+  hr
+  table.table.table-bordered.table-striped
+    tr
+      th #{__('Name')}
+      th #{__('Created by')}
+      th #{__('Description')}
+      // th #{__('Manuscript')}
+    each corpus in recent_corpus
+      tr
+        td
+          a(href=`/webrec/audio/view/${corpus._id}`) #{corpus.name}
+        td= corpus.createdBy.profile.name
+        td= corpus.description
+        // td= corpus.num_of_manuscript
+  
+    //- .col-md-6
+    //-   h2 #{__('Create a corpus')}
+    //-   p #{__('In order to create a new corpus, click here.')}
+    //-   p
+    //-     a.btn.btn-raised(href='/webrec/corpus/edit', role='button') View details »
+    //- .col-md-6
+    //-   h2 #{__('Edit a corpus')}
+    //-   p #{__('')}
+    //-   p
+    //-     a.btn.btn-raised(href='#', role='button') View details »
+    //- .col-md-6
+    //-   h2 Heading
+    //-   p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+    //-   p
+    //-     a.btn.btn-raised(href='#', role='button') View details »
+    //- .col-md-6
+    //-   h2 Heading
+    //-   p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+    //-   p
+    //-     a.btn.btn-raised(href='#', role='button') View details »
